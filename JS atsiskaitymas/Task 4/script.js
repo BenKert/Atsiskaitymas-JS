@@ -9,4 +9,18 @@ Pastaba: Informacija apie automobilį (brand) (jo kortelė) bei turi turėti
 bent minimalų stilių;
 -------------------------------------------------------------------------- */
 
-const ENDPOINT = 'cars.json';
+const ENDPOINT = "cars.json";
+
+fetch("./cars.json")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((el, i) => {
+      const h3HTML = `<h3>${i + 1}. ${el.brand}</h3>`;
+      document.querySelector("h3").insertAdjacentHTML("beforeend", h3HTML);
+      el.models.forEach((el) => {
+        const h3HTML2 = `${el}
+        `;
+        document.querySelector("h3").insertAdjacentHTML("beforeend", h3HTML2);
+      });
+    });
+  });
